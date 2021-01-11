@@ -3,3 +3,9 @@ export interface todoType {
     title :string,
     type :boolean
 }
+
+export enum tab_type {
+    All,
+    Active,
+    Completed
+}

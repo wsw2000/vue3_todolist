@@ -16,7 +16,7 @@ import { computed, defineComponent, onMounted, provide, reactive, toRef, toRefs 
 import Header from '@/components/Header.vue'
 import List from '@/components/List.vue'
 import Footer from '@/components/Footer.vue'
-import { todoType } from '@/interfaces/main.ts'
+import { todoType ,tab_type} from '@/interfaces/main.ts'
 import { getTodoList,setTodoList } from '@/utils/localStorageUtils'
 export default defineComponent({
   name: 'App',
@@ -65,9 +65,9 @@ export default defineComponent({
     }
     const showlist = computed(()=>{
       switch (tab_index.value){
-        case 0: return todolist.value
-        case 1: return todolist.value.filter(item => !item.type)       
-        case 2: return todolist.value.filter(item => item.type)   
+        case tab_type.All: return todolist.value
+        case tab_type.Active: return todolist.value.filter(item => !item.type)       
+        case tab_type.Completed: return todolist.value.filter(item => item.type)   
       }
     })
     provide('delTodo',delTodo)

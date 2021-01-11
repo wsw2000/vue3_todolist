@@ -5,7 +5,7 @@
       </span>
       <ul class="filters">
         <li>
-            <input class="toggle" type="checkbox" v-model="allCheck"/>全选/全不选
+            <input :disabled="totalLenth == 0" class="toggle" type="checkbox" v-model="allCheck"/>全选/全不选
         </li>
         <li 
         v-for="(item,index) in tabs"
@@ -47,15 +47,13 @@ export default defineComponent({
       tabs:['All','Active','Completed']
     })
     
-    const totalLenth = computed<number | undefined>(() => {      
+    const totalLenth = computed<number>(() => {      
       return props.todolist?.length
     })
     const allCheck = computed({
       get(){      
         let flag = props.todolist.every((item)=> item.type)
         flag = flag && totalLenth.value != 0 ? true : false
-        console.log('falg：' + flag);
-        
         return flag     
       },
       set(val:boolean){
